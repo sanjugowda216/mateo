@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Salary Simulation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin-top: 30px;
+        }
+
+        select {
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        #salary-display {
+            font-size: 18px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Teacher Salary Simulation</h1>
+    </header>
+    <main>
+        <label for="marital-status">Select Marital Status:</label>
+        <select name="marital-status" id="marital-status">
+            <option value="single">Single</option>
+            <option value="married">Married</option>
+        </select>
+        <label for="teacher-status">Select Teacher's Status:</label>
+        <select name="teacher-status" id="teacher-status">
+            <option value="starter">Starter</option>
+            <option value="mid">Mid-level</option>
+            <option value="senior">Senior</option>
+        </select>
+        <label for="education-level">Select Teacher's Education Level:</label>
+        <select name="education-level" id="education-level">
+            <option value="bachelor">Bachelor's Degree</option>
+            <option value="master">Master's Degree</option>
+            <option value="phd">PhD</option>
+        </select>
+        <div id="salary-display"></div>
+
+        <button type="run" id="run" onclick="calculate()">Calculate Salary!</button>
+    </main>
+
+    <script>
+        function calculateSalary() {
+            const maritalStatus = document.getElementById('marital-status').value;
+            const teacherStatus = document.getElementById('teacher-status').value;
+            const educationLevel = document.getElementById('education-level').value;
+
+            let baseSalary = 0;
+
+            switch (teacherStatus) {
+                case 'starter':
+                    baseSalary = 40000;
+                    break;
+                case 'mid':
+                    baseSalary = 60000;
+                    break;
+                case 'senior':
+                    baseSalary = 80000;
+                    break;
+                default:
+                    baseSalary = 0;
+                    break;
+            }
+
+            let salary = baseSalary;
+
+            if (maritalStatus === 'married') {
+                salary += 10000; // Additional salary for married teachers
+            }
+
+            switch (educationLevel) {
+                case 'bachelor':
+                    salary += 5000;
+                    break;
+                case 'master':
+                    salary += 10000;
+                    break;
+                case 'phd':
+                    salary += 15000;
+                    break;
+                default:
+                    break;
+            }
+
+            document.getElementById('salary-display').innerText = `Teacher's Salary: $${salary}`;
+        }
+
+        calculate()
+            calculateSalary()
+    </script>
+</body>
+</html>

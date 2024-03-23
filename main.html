@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Salary Simulation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin-top: 30px;
+        }
+
+        select {
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        #salary-display {
+            font-size: 18px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Teacher Salary Simulation</h1>
+    </header>
+    <main>
+        <label for="marital-status">Select Marital Status:</label>
+        <select name="marital-status" id="marital-status">
+            <option value="single">Single</option>
+            <option value="married">Married</option>
+        </select>
+        <label for="teacher-status">Select Teacher's Status:</label>
+        <select name="teacher-status" id="teacher-status" onchange="calculateSalary()">
+            <option value="starter">Starter</option>
+            <option value="mid">Mid-level</option>
+            <option value="senior">Senior</option>
+        </select>
+        <div id="salary-display"></div>
+    </main>
+
+    <script>
+        function calculateSalary() {
+            const maritalStatus = document.getElementById('marital-status').value;
+            const teacherStatus = document.getElementById('teacher-status').value;
+            let baseSalary = 0;
+
+            switch (teacherStatus) {
+                case 'starter':
+                    baseSalary = 75000;
+                    break;
+                case 'mid':
+                    baseSalary = 107000;
+                    break;
+                case 'senior':
+                    baseSalary = 127000;
+                    break;
+                default:
+                    baseSalary = 0;
+                    break;
+            }
+
+            let salary = baseSalary;
+
+            if (maritalStatus === 'married') {
+                salary += 10000; // Additional salary for married teachers
+            }
+            if (maritalStatus === 'married'){
+                salary += 5000; //additional salary for single
+            }
+
+            document.getElementById('salary-display').innerText = `Teacher's Salary: $${salary}`;
+        }
+    </script>
+</body>
+</html>
