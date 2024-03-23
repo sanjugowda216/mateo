@@ -143,3 +143,6 @@ button:hover {
     background-color: #b1a999e9;
   }
   
+html{
+    scroll-behavior: smooth;
+}
