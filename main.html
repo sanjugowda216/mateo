@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Salary Simulation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin-top: 30px;
+        }
+
+        select {
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        #salary-display {
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Teacher Salary Simulation</h1>
+    </header>
+    <main>
+        <label for="experience">Select Teacher's Experience:</label>
+        <select name="experience" id="experience" onchange="calculateSalary(this.value)">
+            <option value="0">Select Experience</option>
+            <option value="1">Less than 5 years</option>
+            <option value="2">5-10 years</option>
+            <option value="3">More than 10 years</option>
+        </select>
+        <div id="salary-display"></div>
+    </main>
+
+    <script>
+        function calculateSalary(experience) {
+            let salary = 0;
+            switch (experience) {
+                case '1':
+                    salary = 90000;
+                    break;
+                case '2':
+                    salary = 120000;
+                    break;
+                case '3':
+                    salary = 140700;
+                    break;
+                default:
+                    salary = 0;
+                    break;
+            }
+            document.getElementById('salary-display').innerText = `Teacher's Salary: $${salary}`;
+        }
+    </script>
+    <center><label for="maritial_status">Select Maritial status:</label></center>
+    <center><div><select name="maritial_status" id="maritial_status" onchange="selectingStatus()">
+        <option value="0">Select Status</option>
+        <option value="1">Single</option>
+        <option value="2">Married</option>
+        <option value="3">Choose not to specify</option>
+    </select></center>
+    <center><div id="maritialStatus_display"></div></center>
+
+    <script>
+        function selectingStatus() {
+            switch(maritial_status) {
+                case '1':
+                    status="single";
+                    break;
+                case '2':
+                    status="married";
+                    break;
+                case '3':
+                    status="test";
+                    break;  
+            }
+        }
+    </script>
+</body>
+</html>
