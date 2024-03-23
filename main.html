@@ -42,7 +42,7 @@
     </header>
     <main>
         <label for="marital-status">Select Marital Status:</label>
-        <select name="marital-status" id="marital-status">
+        <select name="marital-status" id="marital-status" onchange="calculateSalary()">
             <option value="single">Single</option>
             <option value="married">Married</option>
         </select>
@@ -52,6 +52,12 @@
             <option value="mid">Mid-level</option>
             <option value="senior">Senior</option>
         </select>
+        <label for="additional-qualification">Additional Qualification:</label>
+        <select name="additional-qualification" id="additional-qualification" onchange="calculateSalary()">
+            <option value="none">None</option>
+            <option value="master">Master's Degree</option>
+            <option value="phd">PhD</option>
+        </select>
         <div id="salary-display"></div>
     </main>
 
@@ -59,17 +65,19 @@
         function calculateSalary() {
             const maritalStatus = document.getElementById('marital-status').value;
             const teacherStatus = document.getElementById('teacher-status').value;
+            const additionalQualification = document.getElementById('additional-qualification').value;
+
             let baseSalary = 0;
 
             switch (teacherStatus) {
                 case 'starter':
-                    baseSalary = 75000;
+                    baseSalary = 76000;
                     break;
                 case 'mid':
-                    baseSalary = 107000;
+                    baseSalary = 100000;
                     break;
                 case 'senior':
-                    baseSalary = 127000;
+                    baseSalary = 119000;
                     break;
                 default:
                     baseSalary = 0;
@@ -80,9 +88,14 @@
 
             if (maritalStatus === 'married') {
                 salary += 10000; // Additional salary for married teachers
+            } else if(maritalStatus=="single"){
+                salary+=5000;
             }
-            if (maritalStatus === 'married'){
-                salary += 5000; //additional salary for single
+
+            if (additionalQualification === 'master') {
+                salary += 10000; // Additional salary for Master's Degree
+            } else if (additionalQualification === 'phd') {
+                salary += 20000; // Additional salary for PhD
             }
 
             document.getElementById('salary-display').innerText = `Teacher's Salary: $${salary}`;
